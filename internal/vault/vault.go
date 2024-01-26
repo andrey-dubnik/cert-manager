@@ -420,7 +420,7 @@ func (v *Vault) requestTokenWithKubernetesAuth(client Client, kubernetesAuth *v1
 				// as if someone creates an Issuer in another namespace/globally with the same audiences
 				// in attempt to highjack the certificate vault (if role config mandates sa:namespace) won't authorise the conneciton
 				// as token subject won't match vault role requirement to have SA originated from the specific namespace.
-				Audiences: audiences,
+				Audiences: []string{aud},
 
 				// Since the JWT is only used to authenticate with Vault and is
 				// immediately discarded, let's use the minimal duration
